@@ -1,5 +1,6 @@
 package com.scaapi.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,9 +18,12 @@ public class Campeonato {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Integer ano;
-    private String categoria;
     private String nome;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "campeonato")
+    private List<Partida> partida;
+
 
 
 }

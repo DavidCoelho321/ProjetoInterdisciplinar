@@ -1,26 +1,28 @@
 package com.scaapi.api.dto;
 
+import org.modelmapper.ModelMapper;
+
+
 import com.scaapi.model.entity.Equipe;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.modelmapper.ModelMapper;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+public class EquipeDTO {
 
-public class EquipeController {
 
     private Long id;
-
     private Integer ano;
     private Integer categoria;
     private String nome;
+    private Long idPartida;
+    private Long idPiloto;
 
-    public static EquipeDTO create(Equipe equipe) {
+    public static EquipeDTO create(Equipe turma) {
         ModelMapper modelMapper = new ModelMapper();
-        return modelMapper.map(equipe, EquipeDTO.class);
+        return modelMapper.map(turma, EquipeDTO.class);
     }
 }
-

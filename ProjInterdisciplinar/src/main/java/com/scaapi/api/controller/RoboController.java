@@ -2,12 +2,13 @@ package com.scaapi.api.controller;
 
 import com.scaapi.api.dto.RoboDTO;
 
+import com.scaapi.exception.RegraNegocioException;
 import com.scaapi.model.entity.Robo;
 import com.scaapi.model.entity.Campeonato;
 import com.scaapi.model.entity.Ficha;
 import com.scaapi.service.RoboService;
 import com.scaapi.service.CampeonatoService;
-import com.scaapi.service.FichaService;
+import com.scaapi.service.FichaoService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -30,7 +31,7 @@ public class RoboController {
 
     @GetMapping()
     public ResponseEntity get() {
-        List<Robo> Robo = service.getRobos();
+        List<Robo> robos = service.getRobos();
         return ResponseEntity.ok(robos.stream().map(RoboDTO::create).collect(Collectors.toList()));
     }
 
@@ -38,7 +39,7 @@ public class RoboController {
     public ResponseEntity get(@PathVariable("id") Long id) {
         Optional<Robo> robo = service.getRoboById(id);
         if (!robo.isPresent()) {
-            return new ResponseEntity("Robo não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("robo não encontrado", HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok(robo.map(RoboDTO::create));
     }
@@ -102,6 +103,4 @@ public class RoboController {
         }
         return robo;
     }
-
-
 }

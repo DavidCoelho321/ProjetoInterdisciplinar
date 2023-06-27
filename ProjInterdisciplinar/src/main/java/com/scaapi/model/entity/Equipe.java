@@ -22,10 +22,10 @@ public class Equipe {
     private String nome;
 
     @ManyToOne
-    private Campeonato campeonato;
+    private Partida partida;
 
     @ManyToOne
-    private Representante Representante;
+    private Piloto piloto;
 
     @ManyToMany
     @JoinTable(name = "equipe_robo",

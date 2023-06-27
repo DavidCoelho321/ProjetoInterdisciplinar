@@ -10,4 +10,5 @@ import java.util.Optional;
 
 
 public interface RoboRepository extends JpaRepository<Robo, Long> {
+
 }

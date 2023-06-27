@@ -1,23 +1,26 @@
 package com.scaapi.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@MappedSuperclass
 
-public abstract class Piloto {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Piloto extends Especificacao {
 
-    private String nome;
+    private Integer cadastro;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Ficha ficha;
+    @ManyToOne
+    private Campeonato campeonato;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "Robos")
+    private List<Equipe> Equipes;
 }
